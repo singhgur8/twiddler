@@ -1,0 +1,40 @@
+.tweet {
+  color:DarkCyan;
+  font-size: 35px;
+  border-style: none;
+}
+body {
+ background-color: LightCyan;
+ text-align: center;
+ margin-left: 20px;
+ margin-right:20px;
+
+}
+
+div {
+
+}
+h1 {
+ background-color: DarkCyan;
+ color: white;
+
+}
+
+button{
+  font-size: 35px;
+  border-style: solid;
+  margin: 15px;
+}
+
+h2{
+  border: 3px;
+  color: black;
+  border-bottom: solid;
+  border-color: black;
+  margin-left: inherit;
+  margin-right: inherit;
+}
+
+h1 {
+
+}

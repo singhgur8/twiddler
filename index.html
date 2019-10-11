@@ -1,27 +1,119 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link
+      href = "styles.css" type="text/css" rel = "stylesheet">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <h1>Twiddler</h1>
   </head>
-  <body>
-    <script>
 
-      $(document).ready(function(){
+<!-- generates a time stamp the first time, but then it stops -->
+
+  <body>
+
+    <button onClick="tester()">Home/Refresh</button>
+    <!-- want to make this refresh button show new tweets
+  so that on click...a script is run, that script will bring more tweets -->
+
+
+      <script>
+      function profile(nameOf){
+        nameOf = nameOf.slice(1)
+        $(".temp").remove();
+        // if the tweet has certain user.name then append
+
         var $body = $('body');
-        $body.html('');
 
         var index = streams.home.length - 1;
         while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
+            if (nameOf === streams.home[index].user){
+
+              var timeStamp = streams.home[index].created_at;
+              var $timeStamp = $('<div class = "temp"></div>');
+              $timeStamp.text(timeStamp)
+
+              var tweet = streams.home[index];
+              var $tweet = $('<div class = "temp tweet"></div>');
+              $tweet.text(tweet.message);
+              var $name = $('<h2 class = "temp" onclick = "profile(this.textContent || this.innerText)"></h2>');
+              $name.text('@' + tweet.user);
+
+              $name.appendTo($body);
+              $tweet.appendTo($body);
+              $timeStamp.appendTo($body);
+            }
+            index -= 1;
         }
+      }
 
-      });
 
-    </script>
+
+      function tester(){
+          // clear the page first, then load in all of the tweets
+          $(".temp").remove();
+
+          var $body = $('body');
+
+          var index = streams.home.length - 1;
+          while(index >= 0){
+
+
+
+            var timeStamp = streams.home[index].created_at;
+            var $timeStamp = $('<div class = "temp"></div>');
+            $timeStamp.text(timeStamp)
+
+            var tweet = streams.home[index];
+            var $tweet = $('<div class = "temp tweet"></div>');
+            $tweet.text(tweet.message);
+            var $name = $('<h2 class = "temp" onclick = "profile(this.textContent || this.innerText)"></h2>');
+            $name.text('@' + tweet.user);
+
+
+            $name.appendTo($body);
+            $tweet.appendTo($body);
+            $timeStamp.appendTo($body);
+            index -= 1;
+          }
+        };
+      </script>
+
+
+      <script>
+
+        $(document).ready(function(){
+          var $body = $('body');
+
+          var index = streams.home.length - 1;
+          while(index >= 0){
+
+
+
+            var timeStamp = streams.home[index].created_at;
+            var $timeStamp = $('<div class = "temp"></div>');
+            $timeStamp.text(timeStamp)
+
+            var tweet = streams.home[index];
+            var $tweet = $('<div class = "temp tweet"></div>');
+            $tweet.text(tweet.message);
+            var $name = $('<h2 class = "temp" onclick = "profile(this.textContent || this.innerText)"></h2>');
+            $name.text('@' + tweet.user);
+
+
+            $name.appendTo($body);
+            $tweet.appendTo($body);
+            $timeStamp.appendTo($body);
+            index -= 1;
+          }
+
+        });
+
+      </script>
+
+
+
+
+
   </body>
 </html>
